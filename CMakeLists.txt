@@ -12,6 +12,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${CMAKE_BINARY_DIR}/bin)
 
+# Include directories for header files
+include_directories(${CMAKE_SOURCE_DIR})
+
 add_executable(HelloWorld main.c Max.c)
 
 # Add test executable
