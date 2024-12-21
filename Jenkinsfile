@@ -16,5 +16,13 @@ pipeline {
                 '''
             }
         }
+        stage('Run') {
+            steps {
+                sh '''
+                cd build
+                ./HelloWorld
+                '''
+            }
+        }
     }
 }
