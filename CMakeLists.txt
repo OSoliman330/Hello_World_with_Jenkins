@@ -13,3 +13,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL ${CMAKE_BINARY_DIR}/bin)
 
 add_executable(HelloWorld main.c Max.c)
+
+# Add test executable
+add_executable(TestMax UTD/test_max.c Max.c)
