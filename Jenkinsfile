@@ -11,15 +11,15 @@ pipeline {
                 bat '''
                 mkdir build
                 cd build
-                cmake ..
-                cmake --build .
+                cmake -DCMAKE_BUILD_TYPE=Debug ..
+                cmake --build . --config Debug
                 '''
             }
         }
         stage('Run') {
             steps {
                 bat '''
-                cd build
+                cd build/bin
                 HelloWorld.exe
                 '''
             }
