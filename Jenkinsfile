@@ -19,6 +19,17 @@ pipeline {
                 '''
             }
         }
+        stage('Test') {
+            steps {
+                bat '''
+                @echo off
+                echo "Testing the project..."
+                cd build/bin
+                TestMax.exe
+                echo "Tests completed successfully."
+                '''
+            }
+        }
         stage('Run') {
             steps {
                 bat '''
