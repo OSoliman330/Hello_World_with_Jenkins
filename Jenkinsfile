@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '''
-                mkdir -p build
+                bat '''
+                mkdir build
                 cd build
                 cmake ..
                 cmake --build .
@@ -18,9 +18,9 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh '''
+                bat '''
                 cd build
-                ./HelloWorld
+                HelloWorld.exe
                 '''
             }
         }
