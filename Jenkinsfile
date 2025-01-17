@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        cmake 'CMake' // Replace 'CMake' with the name you configured in Jenkins Global Tool Configuration
+    }
     stages {
         stage('Checkout') {
             steps {
