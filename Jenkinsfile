@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        cmake 'CMake'
+        'hudson.plugins.cmake.CmakeTool' 'CMake'
     }
     stages {
         stage('Checkout') {
