@@ -6,39 +6,86 @@ pipeline {
                 git 'https://github.com/OSoliman330/Hello_World_with_Jenkins.git'
             }
         }
+        stage('Configure') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                        echo "Configuring the project..."
+                        cmake -S . -B build
+                        cmake --build build --target config
+                        echo "Configuration completed successfully."
+                        '''
+                    } else {
+                        bat '''
+                        echo "Configuring the project..."
+                        cmake -S . -B build
+                        cmake --build build --target config
+                        echo "Configuration completed successfully."
+                        '''
+                    }
+                }
+            }
+        }
         stage('Build') {
             steps {
-                bat '''
-                @echo off
-                echo "Building the project..."
-                mkdir build
-                cd build
-                cmake -DCMAKE_BUILD_TYPE=Debug ..
-                cmake --build . --config Debug --verbose
-                echo "Build completed successfully."
-                '''
+                script {
+                    if (isUnix()) {
+                        sh '''
+                        echo "Building the project..."
+                        cmake --build build --target build
+                        echo "Build completed successfully."
+                        '''
+                    } else {
+                        bat '''
+                        echo "Building the project..."
+                        cmake --build build --target build
+                        echo "Build completed successfully."
+                        '''
+                    }
+                }
             }
         }
         stage('Test') {
             steps {
-                bat '''
-                @echo off
-                echo "Testing the project..."
-                cd build/bin
-                TestMax.exe
-                echo "Tests completed successfully."
-                '''
+                script {
+                    if (isUnix()) {
+                        sh '''
+                        echo "Testing the project..."
+                        cd build/bin
+                        ./TestMax
+                        echo "Tests completed successfully."
+                        '''
+                    } else {
+                        bat '''
+                        echo "Testing the project..."
+                        cd build\\bin
+                        TestMax.exe
+                        echo "Tests completed successfully."
+                        '''
+                    }
+                }
             }
         }
         stage('Run') {
             steps {
-                bat '''
-                @echo off
-                echo "Running the project..."
-                cd build/bin
-                HelloWorld.exe
-                echo "Project run successfully."
-                '''
+                script {
+                    if (isUnix()) {
+                        sh '''
+                        echo "Running the project..."
+                        cd build/bin
+                        ./HelloWorld
+                        echo "Project run successfully."
+                        '''
+                    } else {
+                        bat '''
+                        echo "Running the project..."
+                        cd build\\bin
+                        HelloWorld.exe
+                        echo "Project run successfully."
+                        '''
+                    }
+                }
             }
         }
     }
