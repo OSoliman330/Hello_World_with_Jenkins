@@ -15,8 +15,8 @@ pipeline {
                     if (isUnix()) {
                         sh '''
                         echo "Configuring the project..."
-                        cmake -S . -B build
-                        cmake --build build --target config
+                        sudo cmake -S . -B build
+                        sudo cmake --build build --target config
                         echo "Configuration completed successfully."
                         '''
                     } else {
@@ -36,7 +36,7 @@ pipeline {
                     if (isUnix()) {
                         sh '''
                         echo "Building the project..."
-                        cmake --build build --target build
+                        sudo cmake --build build --target build
                         echo "Build completed successfully."
                         '''
                     } else {
